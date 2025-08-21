@@ -1,0 +1,54 @@
+/* .welcome{
+  font-size: 30px;
+  margin-top: 200px;
+  text-align: center;
+} */
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+.search-form {
+  background-color: var(--dark-bg-color);
+  padding: 20px;
+  border-radius: 5px;
+  color: #000;
+}
+.base-table {
+  background-color: var(--dark-bg-color);
+  border-radius: 5px;
+  color: #000;
+  .header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px 5px 0 0;
+    padding: 15px;
+    .action button {
+      margin-left: 15px;
+    }
+    color: var(--dark-color);
+  }
+}
+.search-form + .base-table {
+  margin-top: 20px;
+}
+.mr10 {
+  margin-right: 10px;
+}
+// /* 复选框选中 */
+// .ant-checkbox-checked .ant-checkbox-inner {
+//   background-color: #52c41a; /* 绿色 */
+//   border-color: #52c41a;
+// }
+.base-table .ant-table-row-selected > td {
+  background-color: skyblue !important;
+}
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #52c41a !important; /* 绿色背景 */
+  border-color: #52c41a !important; /* 绿色边框 */
+}
+
+.ant-checkbox-checked .ant-checkbox-inner::after {
+  border-color: #fff !important; /* 白色勾 */
+}
