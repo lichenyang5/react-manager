@@ -1,27 +1,78 @@
 {
   "compilerOptions": {
+    // 指定 TypeScript 构建信息文件的存放位置（增量编译时使用）
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+
+    // 指定 ECMAScript 的目标版本（输出语法级别），比如 ES2022 会保留较新的语法特性
     "target": "ES2022",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+
+    // 使用 `define` 替代 `assign` 语法来声明类字段，更贴近原生 JS 行为
     "useDefineForClassFields": true,
+
+    // 告诉编译器使用哪些库的类型定义，这里包括了 ES2022 和 DOM 的类型
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
+
+    // 指定模块系统，这里使用 ESNext 模块（适用于现代构建工具如 Vite）
     "module": "ESNext",
+
+    // 跳过库文件的类型检查（提升性能，避免检查 node_modules）
     "skipLibCheck": true,
 
-    /* Bundler mode */
+    // 编译输出中移除注释（用于打包时减小体积）
+    "removeComments": true,
+
+    /* --------- 模块解析相关 (适配 Vite/Webpack 等打包器) --------- */
+
+    // 指定模块解析策略为 "bundler"，让模块按现代打包工具方式解析（Vite 推荐）
     "moduleResolution": "bundler",
+
+    // 允许以 `.ts` 后缀导入 TypeScript 文件（例如 `import './index.ts'`）
     "allowImportingTsExtensions": true,
+
+    // 保留 import/export 的模块语法，不做转译（配合打包工具处理）
     "verbatimModuleSyntax": true,
+
+    // 所有模块都视为 ES 模块（即使没有使用 import/export 也会当作模块处理）
     "moduleDetection": "force",
+
+    // 不输出编译产物（适用于只做类型检查，不进行 JS 输出的项目，如 Vite）
     "noEmit": true,
+
+    // JSX 转换模式，使用 React 17+ 的自动引入 JSX Runtime
     "jsx": "react-jsx",
 
-    /* Linting */
+    /* --------- 类型检查和语法限制 --------- */
+
+    // 启用所有严格类型检查（推荐）
     "strict": true,
+
+    // 报错未使用的本地变量
     "noUnusedLocals": true,
+
+    // 报错未使用的函数参数
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
+
+    // 仅允许编译器支持的语法（移除对过时语法的支持）⚠️ 实验特性
+    "erasableSyntaxOnly": false,
+
+    // 禁止在 switch 语句中 case 穿透（即未使用 break 或 return）
     "noFallthroughCasesInSwitch": true,
+
+    // 禁止在 import 语句中引入可能有副作用的模块（防止不明确的副作用）
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+
+  // 指定需要包含在编译中的文件路径（这里是 src 目录）
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "./*.d.ts",
+    "src/types/global.d.ts"
+  ]
 }
