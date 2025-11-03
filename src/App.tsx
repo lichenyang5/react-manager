@@ -1,4 +1,4 @@
-import { BrowserRouter, RouterProvider } from 'react-router-dom'
+import { RouterProvider } from 'react-router-dom'
 import router from './router/index'
 import { ConfigProvider } from 'antd'
 import { App as AntdApp, theme } from 'antd'
