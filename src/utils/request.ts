@@ -24,8 +24,7 @@ instance.interceptors.request.use(
     }
     const token = storage.get('token')
     if (token) {
-      config.headers.Authorization =  token
-      config.headers.icode = 'lcy'
+      config.headers.Authorization = token
     }
 
     if (env.mock) {
@@ -45,7 +44,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   response => {
     hideLoading()
-    if(response.config.responseType==='blob') return response
+    if (response.config.responseType === 'blob') return response
     const data: Result = response.data
     //data不指定类型无法用 data. 去提示关键词
     if (data.code === 500001) {

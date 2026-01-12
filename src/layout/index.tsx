@@ -1,9 +1,4 @@
 import React, { useEffect } from 'react'
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined
-} from '@ant-design/icons'
 import { Layout, theme, Watermark } from 'antd'
 import NavHeader from '@/components/NavHeader'
 import NavFooter from '@/components/NavFooter'
@@ -17,7 +12,6 @@ import {
 } from 'react-router-dom'
 import styles from './index.module.less'
 import api from '@/api'
-import storage from '@/utils/storage'
 import store, { useStore } from '@/store'
 import type { IAuthLoader } from '@/router/AuthLoader'
 import { searchRoute } from '@/utils'
