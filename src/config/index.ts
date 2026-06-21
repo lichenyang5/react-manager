@@ -1,41 +1,10 @@
-/*
-  环境配置封装
-*/
-type ENV = 'stag' | 'prd' | 'dev'
+const baseApi = import.meta.env.VITE_BASE_API || '/api'
+const mock = import.meta.env.VITE_MOCK === 'true'
+const mockApi = import.meta.env.VITE_MOCK_API || 'http://localhost:3000/mock'
 
-const env = (document.documentElement.dataset.env as ENV) || 'stg'
-const config = {
-  dev: {
-    baseApi: '/api',
-    uploadApi: 'http://api-driver-dev.marsview.cc',
-    cdn: 'http://xxx.aliyun.com',
-    mock: false,
-    mockApi: 'http://localhost:3000/mock'
-  },
-  stag: {
-    baseApi: '/api',
-    uploadApi: 'http://api-driver-dev.marsview.cc',
-    cdn: 'http://xxx.aliyun.com',
-    mock: true,
-    mockApi: 'http://localhost:3000/mock'
-  },
-  prd: {
-    baseApi: '/api',
-    uploadApi: 'http://api-driver-dev.marsview.cc',
-    cdn: 'http://xxx.aliyun.com',
-    mock: true,
-    mockApi: 'http://localhost:3000/mock'
-  }
-}
 export default {
-  env,
-  ...config[env]
+  env: import.meta.env.MODE || 'development',
+  baseApi,
+  mock,
+  mockApi
 }
-// let env :ENV ='dev'
-// if(location.host==='localhost:8080'){
-//   env='dev'
-// }else if(location.host ==='driver-svg.marsview.cc'){
-//   env='stag'
-// }else{
-//   env='prd'
-// }
